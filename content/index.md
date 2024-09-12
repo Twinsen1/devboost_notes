@@ -6,4 +6,4 @@ title: Devboost notes
 - [[2 sep - 6 sep]]
 
 ## Note
-- [[content/Product Vision|Product Vision]]
+- [[Product Vision]]
