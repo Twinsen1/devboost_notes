@@ -2,6 +2,7 @@
 title: Devboost notes
 ---
 ## Weeklys
+- [[16 sep - 20 sep]]
 - [[9 sep - 13 sep]]
 - [[2 sep - 6 sep]]
 
