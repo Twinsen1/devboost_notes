@@ -3,6 +3,7 @@ title: Devboost notes
 ---
 ## Note
 [[Product vision]]
+
 [[Факты-выводы из первых триалов]]
 ## Weeklys
 [[16 sep - 20 sep]]
