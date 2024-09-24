@@ -6,6 +6,7 @@ title: Devboost notes
 - [[Факты-выводы из первых триалов]]
 - [[График Триалов]]
 ## Weeklys
+[[23 sep - 27 sep]]
 [[16 sep - 20 sep]]
 [[9 sep - 13 sep]]
 [[2 sep - 6 sep]]
