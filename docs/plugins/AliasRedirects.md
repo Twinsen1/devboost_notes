@@ -22,16 +22,15 @@ Note that these are permanent redirect.
 
 The emitter supports the following aliases:
 
-- `aliases`
-- `alias`
+-  `aliases`
+-  `alias`
 
-> [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> \[!note\] For information on how to add, remove or configure plugins, see the \[\[configuration#Plugins|Configuration\]\] page.
 
 This plugin has no configuration options.
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.AliasRedirects()`.
-- Source: [`quartz/plugins/emitters/aliases.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/aliases.ts).
+-  Category: Emitter
+-  Function name: `Plugin.AliasRedirects()`.
+-  Source: [`quartz/plugins/emitters/aliases.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/aliases.ts).

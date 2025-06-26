@@ -6,20 +6,18 @@ Quartz effectively turns your Markdown files and other resources into a bundle o
 
 However, if you'd like to publish your site to the world, you need a way to host it online. This guide will detail how to deploy with common hosting providers but any service that allows you to deploy static HTML should work as well.
 
-> [!warning]
-> The rest of this guide assumes that you've already created your own GitHub repository for Quartz. If you haven't already, [[setting up your GitHub repository|make sure you do so]].
+> \[!warning\] The rest of this guide assumes that you've already created your own GitHub repository for Quartz. If you haven't already, \[\[setting up your GitHub repository|make sure you do so\]\].
 
-> [!hint]
-> Some Quartz features (like [[RSS Feed]] and sitemap generation) require `baseUrl` to be configured properly in your [[configuration]] to work properly. Make sure you set this before deploying!
+> \[!hint\] Some Quartz features (like \[\[RSS Feed\]\] and sitemap generation) require `baseUrl` to be configured properly in your \[\[configuration\]\] to work properly. Make sure you set this before deploying!
 
 ## Cloudflare Pages
 
-1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/) and select your account.
-2. In Account Home, select **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
-3. Select the new GitHub repository that you created and, in the **Set up builds and deployments** section, provide the following information:
+1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/) and select your account.
+2. In Account Home, select **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
+3. Select the new GitHub repository that you created and, in the **Set up builds and deployments** section, provide the following information:
 
 | Configuration option   | Value              |
-| ---------------------- | ------------------ |
+|------------------------|--------------------|
 | Production branch      | `v4`               |
 | Framework preset       | `None`             |
 | Build command          | `npx quartz build` |
@@ -29,8 +27,7 @@ Press "Save and deploy" and Cloudflare should have a deployed version of your si
 
 To add a custom domain, check out [Cloudflare's documentation](https://developers.cloudflare.com/pages/platform/custom-domains/).
 
-> [!warning]
-> Cloudflare Pages performs a shallow clone by default, so if you rely on `git` for timestamps, it is recommended that you add `git fetch --unshallow &&` to the beginning of the build command (e.g., `git fetch --unshallow && npx quartz build`).
+> \[!warning\] Cloudflare Pages performs a shallow clone by default, so if you rely on `git` for timestamps, it is recommended that you add `git fetch --unshallow &&` to the beginning of the build command (e.g., `git fetch --unshallow && npx quartz build`).
 
 ## GitHub Pages
 
@@ -89,13 +86,11 @@ Then:
 1. Head to "Settings" tab of your forked repository and in the sidebar, click "Pages". Under "Source", select "GitHub Actions".
 2. Commit these changes by doing `npx quartz sync`. This should deploy your site to `<github-username>.github.io/<repository-name>`.
 
-> [!hint]
-> If you get an error about not being allowed to deploy to `github-pages` due to environment protection rules, make sure you remove any existing GitHub pages environments.
+> \[!hint\] If you get an error about not being allowed to deploy to `github-pages` due to environment protection rules, make sure you remove any existing GitHub pages environments.
 >
 > You can do this by going to your Settings page on your GitHub fork and going to the Environments tab and pressing the trash icon. The GitHub action will recreate the environment for you correctly the next time you sync your Quartz.
 
-> [!info]
-> Quartz generates files in the format of `file.html` instead of `file/index.html` which means the trailing slashes for _non-folder paths_ are dropped. As GitHub pages does not do this redirect, this may cause existing links to your site that use trailing slashes to break. If not breaking existing links is important to you (e.g. you are migrating from Quartz 3), consider using [[#Cloudflare Pages]].
+> \[!info\] Quartz generates files in the format of `file.html` instead of `file/index.html` which means the trailing slashes for *non-folder paths* are dropped. As GitHub pages does not do this redirect, this may cause existing links to your site that use trailing slashes to break. If not breaking existing links is important to you (e.g. you are migrating from Quartz 3), consider using \[\{% #Cloudflare Pages %}\].
 
 ### Custom Domain
 
@@ -105,19 +100,18 @@ Here's how to add a custom domain to your GitHub pages deployment.
 2. In the "Code and automation" section of the sidebar, click "Pages".
 3. Under "Custom Domain", type your custom domain and click "Save".
 4. This next step depends on whether you are using an apex domain (`example.com`) or a subdomain (`subdomain.example.com`).
-   - If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
-     - `185.199.108.153`
-     - `185.199.109.153`
-     - `185.199.110.153`
-     - `185.199.111.153`
-   - If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`.
+   -  If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
+      -  `185.199.108.153`
+      -  `185.199.109.153`
+      -  `185.199.110.153`
+      -  `185.199.111.153`
+   -  If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`.
 
-![[dns records.png]]_The above shows a screenshot of Google Domains configured for both `jzhao.xyz` (an apex domain) and `quartz.jzhao.xyz` (a subdomain)._
+!\[\[dns records.png\]\]*The above shows a screenshot of Google Domains configured for both `jzhao.xyz` (an apex domain) and `quartz.jzhao.xyz` (a subdomain).*
 
 See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain) for more detail about how to setup your own custom domain with GitHub Pages.
 
-> [!question] Why aren't my changes showing up?
-> There could be many different reasons why your changes aren't showing up but the most likely reason is that you forgot to push your changes to GitHub.
+> \[!question\] Why aren't my changes showing up? There could be many different reasons why your changes aren't showing up but the most likely reason is that you forgot to push your changes to GitHub.
 >
 > Make sure you save your changes to Git and sync it to GitHub by doing `npx quartz sync`. This will also make sure to pull any updates you may have made from other devices so you have them locally.
 
@@ -141,7 +135,7 @@ Before deploying to Vercel, a `vercel.json` file is required at the root of the 
 4. Check that these configuration options are set:
 
 | Configuration option                      | Value              |
-| ----------------------------------------- | ------------------ |
+|-------------------------------------------|--------------------|
 | Framework Preset                          | `Other`            |
 | Root Directory                            | `./`               |
 | Build and Output Settings > Build Command | `npx quartz build` |
@@ -150,8 +144,7 @@ Before deploying to Vercel, a `vercel.json` file is required at the root of the 
 
 ### Custom Domain
 
-> [!note]
-> If there is something already hosted on the domain, these steps will not work without replacing the previous content. As a workaround, you could use Next.js rewrites or use the next section to create a subdomain.
+> \[!note\] If there is something already hosted on the domain, these steps will not work without replacing the previous content. As a workaround, you could use Next.js rewrites or use the next section to create a subdomain.
 
 1. Update the `baseUrl` in `quartz.config.js` if necessary.
 2. Go to the [Domains - Dashboard](https://vercel.com/dashboard/domains) page in Vercel.

@@ -1,17 +1,16 @@
 ---
-title: "Explorer"
+title: Explorer
 tags:
   - component
 ---
 
 Quartz features an explorer that allows you to navigate all files and folders on your site. It supports nested folders and is highly customizable.
 
-By default, it shows all folders and files on your page. To display the explorer in a different spot, you can edit the [[layout]].
+By default, it shows all folders and files on your page. To display the explorer in a different spot, you can edit the \[\[layout\]\].
 
-Display names for folders get determined by the `title` frontmatter field in `folder/index.md` (more detail in [[authoring content | Authoring Content]]). If this file does not exist or does not contain frontmatter, the local folder name will be used instead.
+Display names for folders get determined by the `title` frontmatter field in `folder/index.md` (more detail in \[\[authoring content | Authoring Content\]\]). If this file does not exist or does not contain frontmatter, the local folder name will be used instead.
 
-> [!info]
-> The explorer uses local storage by default to save the state of your explorer. This is done to ensure a smooth experience when navigating to different pages.
+> \[!info\] The explorer uses local storage by default to save the state of your explorer. This is done to ensure a smooth experience when navigating to different pages.
 >
 > To clear/delete the explorer state from local storage, delete the `fileTree` entry (guide on how to delete a key from local storage in chromium based browsers can be found [here](https://docs.devolutions.net/kb/general-knowledge-base/clear-browser-local-storage/clear-chrome-local-storage/)). You can disable this by passing `useSavedState: false` as an argument.
 
@@ -32,7 +31,7 @@ Component.Explorer({
     ... // default implementation shown later
   },
   filterFn: filterFn: (node) => node.name !== "tags", // filters out 'tags' folder
-  mapFn: undefined,
+  mapFn: ,
   // what order to apply functions in
   order: ["filter", "map", "sort"],
 })
@@ -42,19 +41,18 @@ When passing in your own options, you can omit any or all of these fields if you
 
 Want to customize it even more?
 
-- Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
-  - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
-- Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
-- Component:
-  - Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
-  - Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
-- Style: `quartz/components/styles/explorer.scss`
-- Script: `quartz/components/scripts/explorer.inline.ts`
+-  Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
+   -  (optional): After removing the explorer component, you can move the \[\[table of contents | Table of Contents\]\] component back to the `left` part of the layout
+-  Changing `sort`, `filter` and `map` behavior: explained in \[\{% #Advanced customization %}\]
+-  Component:
+   -  Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
+   -  Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
+-  Style: `quartz/components/styles/explorer.scss`
+-  Script: `quartz/components/scripts/explorer.inline.ts`
 
 ## Advanced customization
 
-This component allows you to fully customize all of its behavior. You can pass a custom `sort`, `filter` and `map` function.
-All functions you can pass work with the `FileNode` class, which has the following properties:
+This component allows you to fully customize all of its behavior. You can pass a custom `sort`, `filter` and `map` function. All functions you can pass work with the `FileNode` class, which has the following properties:
 
 ```ts title="quartz/components/ExplorerNode.tsx" {2-5}
 export class FileNode {
@@ -77,7 +75,7 @@ Component.Explorer({
     if ((!a.file && !b.file) || (a.file && b.file)) {
       // sensitivity: "base": Only strings that differ in base letters compare as unequal. Examples: a ≠ b, a = á, a = A
       // numeric: true: Whether numeric collation should be used, such that "1" < "2" < "10"
-      return a.displayName.localeCompare(b.displayName, undefined, {
+      return a.displayName.localeCompare(b.displayName, , {
         numeric: true,
         sensitivity: "base",
       })
@@ -93,7 +91,7 @@ Component.Explorer({
 
 ---
 
-You can pass your own functions for `sortFn`, `filterFn` and `mapFn`. All functions will be executed in the order provided by the `order` option (see [[#Customization]]). These functions behave similarly to their `Array.prototype` counterpart, except they modify the entire `FileNode` tree in place instead of returning a new one.
+You can pass your own functions for `sortFn`, `filterFn` and `mapFn`. All functions will be executed in the order provided by the `order` option (see \[\]). These functions behave similarly to their `Array.prototype` counterpart, except they modify the entire `FileNode` tree in place instead of returning a new one.{#Customization}
 
 For more information on how to use `sort`, `filter` and `map`, you can check [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
@@ -105,8 +103,7 @@ filterFn: (node: FileNode) => boolean
 mapFn: (node: FileNode) => void
 ```
 
-> [!tip]
-> You can check if a `FileNode` is a folder or a file like this:
+> \[!tip\] You can check if a `FileNode` is a folder or a file like this:
 >
 > ```ts
 > if (node.file) {
@@ -182,19 +179,17 @@ Component.Explorer({
 
 ### Show every element in explorer
 
-To override the default filter function that removes the `tags` folder from the explorer, you can set the filter function to `undefined`.
+To override the default filter function that removes the `tags` folder from the explorer, you can set the filter function to \`\`.
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  filterFn: undefined, // apply no filter function, every file and folder will visible
+  filterFn: , // apply no filter function, every file and folder will visible
 })
 ```
 
 ## Advanced examples
 
-> [!tip]
-> When writing more complicated functions, the `layout` file can start to look very cramped.
-> You can fix this by defining your functions in another file.
+> \[!tip\] When writing more complicated functions, the `layout` file can start to look very cramped. You can fix this by defining your functions in another file.
 >
 > ```ts title="functions.ts"
 > import { Options } from "./quartz/components/ExplorerNode"
@@ -242,7 +237,7 @@ Component.Explorer({
 
 ### Putting it all together
 
-In this example, we're going to customize the explorer by using functions from examples above to [[#Add emoji prefix | add emoji prefixes]], [[#remove-list-of-elements-filter| filter out some folders]] and [[#use-sort-to-put-files-first | sort with files above folders]].
+In this example, we're going to customize the explorer by using functions from examples above to \[\{% #Add emoji prefix | add emoji prefixes %}\], \[\{% #remove-list-of-elements-filter| filter out some folders %}\] and \[\{% #use-sort-to-put-files-first | sort with files above folders %}\].
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -253,7 +248,7 @@ Component.Explorer({
 })
 ```
 
-Notice how we customized the `order` array here. This is done because the default order applies the `sort` function last. While this normally works well, it would cause unintended behavior here, since we changed the first characters of all display names. In our example, `sort` would be applied based off the emoji prefix instead of the first _real_ character.
+Notice how we customized the `order` array here. This is done because the default order applies the `sort` function last. While this normally works well, it would cause unintended behavior here, since we changed the first characters of all display names. In our example, `sort` would be applied based off the emoji prefix instead of the first *real* character.
 
 To fix this, we just changed around the order and apply the `sort` function before changing the display names in the `map` function.
 

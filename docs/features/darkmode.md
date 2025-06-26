@@ -1,5 +1,5 @@
 ---
-title: "Darkmode"
+title: Darkmode
 tags:
   - component
 ---
@@ -8,10 +8,10 @@ Quartz supports darkmode out of the box that respects the user's theme preferenc
 
 ## Customization
 
-- Removing darkmode: delete all usages of `Component.Darkmode()` from `quartz.layout.ts`.
-- Component: `quartz/components/Darkmode.tsx`
-- Style: `quartz/components/styles/darkmode.scss`
-- Script: `quartz/components/scripts/darkmode.inline.ts`
+-  Removing darkmode: delete all usages of `Component.Darkmode()` from `quartz.layout.ts`.
+-  Component: `quartz/components/Darkmode.tsx`
+-  Style: `quartz/components/styles/darkmode.scss`
+-  Script: `quartz/components/scripts/darkmode.inline.ts`
 
 You can also listen to the `themechange` event to perform any custom logic when the theme changes.
 

@@ -21,7 +21,7 @@ type FullSlug = string & { __brand: "full" }
 const slug: FullSlug = "some random string"
 ```
 
-While this prevents most typing mistakes _within_ our nominal typing system (e.g. mistaking a server slug for a client slug), it doesn't prevent us from _accidentally_ mistaking a string for a client slug when we forcibly cast it.
+While this prevents most typing mistakes *within* our nominal typing system (e.g. mistaking a server slug for a client slug), it doesn't prevent us from *accidentally* mistaking a string for a client slug when we forcibly cast it.
 
 Thus, we still need to be careful when casting from a string to one of these nominal types in the 'entrypoints', illustrated with hexagon shapes in the diagram below.
 
@@ -43,9 +43,9 @@ graph LR
 
 Here are the main types of slugs with a rough description of each type of path:
 
-- `FilePath`: a real file path to a file on disk. Cannot be relative and must have a file extension.
-- `FullSlug`: cannot be relative and may not have leading or trailing slashes. It can have `index` as it's last segment. Use this wherever possible is it's the most 'general' interpretation of a slug.
-- `SimpleSlug`: cannot be relative and shouldn't have `/index` as an ending or a file extension. It _can_ however have a trailing slash to indicate a folder path.
-- `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension but can contain a trailing slash.
+-  `FilePath`: a real file path to a file on disk. Cannot be relative and must have a file extension.
+-  `FullSlug`: cannot be relative and may not have leading or trailing slashes. It can have `index` as it's last segment. Use this wherever possible is it's the most 'general' interpretation of a slug.
+-  `SimpleSlug`: cannot be relative and shouldn't have `/index` as an ending or a file extension. It *can* however have a trailing slash to indicate a folder path.
+-  `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension but can contain a trailing slash.
 
 To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/util/path.test.ts`.
